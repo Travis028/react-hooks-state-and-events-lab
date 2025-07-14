@@ -9,16 +9,16 @@ test("renders shopping list items", () => {
 });
 
 function ShoppingList({ items }) {
-  const [selectCategory, setSelectCategory] = useState("All");
-
-  const filteredItems = items.filter((item) => {
-    if (selectCategory === "All") return true;
-    return item.category === selectCategory;
-  }); // ✅ Added missing closing brace
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   function handleCategoryChange(event) {
-    setSelectCategory(event.target.value);
+    setSelectedCategory(event.target.value);
   }
+
+  const filteredItems = items.filter((item) => {
+    if (selectedCategory === "All") return true;
+    return item.category === selectedCategory;
+  });
 
   return (
     <div className="ShoppingList">
@@ -32,11 +32,7 @@ function ShoppingList({ items }) {
       </div>
       <ul className="Items">
         {filteredItems.map((item) => (
-          <Item
-            key={item.id}
-            name={item.name}
-            category={item.category}
-          />
+          <Item key={item.id} name={item.name} category={item.category} />
         ))}
       </ul>
     </div>
