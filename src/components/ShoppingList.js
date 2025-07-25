@@ -1,12 +1,5 @@
-import React from "react";
-import { render } from "@testing-library/react";
-import ShoppingList from "../components/ShoppingList";
-import items from "../data/items";
-
-test("renders shopping list items", () => {
-  const { getByText } = render(<ShoppingList items={items} />);
-  expect(getByText("Apples")).toBeInTheDocument();
-});
+import React, { useState } from "react";
+import Item from "./Item";
 
 function ShoppingList({ items }) {
   const [selectedCategory, setSelectedCategory] = useState("All");
